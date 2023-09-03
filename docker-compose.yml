@@ -1,0 +1,19 @@
+version: "3"
+
+volumes:
+  config: {}
+
+services:
+  calibre:
+    build: .
+    container_name: calibre
+    restart: unless-stopped
+    ports:
+      - "8083:8083"
+    environment:
+      - TZ=America/Toronto
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - config:/config
+      - books:/books
